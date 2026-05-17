@@ -1,23 +1,27 @@
-package Hey;
+package fightingGame12;
 import java.util.Scanner;
 import java.util.Random;
 public class FightingSystem {
 
 	
-	public static void fightingAction1(Player user,Player npc){
+	public static void fightingActionUSER(Player user,Knight npc){
 		
-			
+		    boolean okay=false;
 			Scanner input=new Scanner(System.in);
+			while(!okay) {
 			System.out.print("Enter your action: ");
 			String action1=input.nextLine();
-			boolean okay=Check.checkMP1(user,npc,action1);
-			if (okay)Check.checkAction1(user,npc,action1);
-			else return;
+			okay=Check.checkAction1(user,npc,action1);
+			}
+			if(npc.getPhase()==1) {
 			Check.checkHP1(user,npc);
+			}else {Check.checkHP2(user, npc);}
 			Check.checkPower(user,npc);
+			if(npc.getPhase()==1) {
 			Check.checkHP1(user,npc);
+			}else {Check.checkHP2(user, npc);}
 			System.out.println("");
-			System.out.println("Now the Knight's HP is "+npc.HP+". MP is "+npc.MP+". Power is "+npc.Power+".");
+			System.out.println("Now the Knight's HP is "+npc.getHP()+". MP is "+npc.getMP()+". Power is "+npc.getPower()+".");
 			return;
 			 
 			
@@ -25,73 +29,44 @@ public class FightingSystem {
 		
 	}
 	
-	public static void fightingAction2(Player user,Player npc) {
+	public static void fightingActionNPC(Player user,Knight npc) {
 		Check.checkWord(npc);
 		Random rand=new Random();
+		String[] action1;
+		boolean okay=false;
+		while(!okay) {
+		if(npc.getPhase()==1) {
+		action1=npc.getAction1();
+		}else {action1=npc.getAction2();}
 		String action2="";
 		int num1=rand.nextInt(3)+1;//(max-min+1)+min
 		for(int num2=1;num2<=num1;num2++) {
 			int num3=rand.nextInt(3);
-			String action3=npc.action1[num3];
+			String action3=action1[num3];
 			action2+=action3;
 		}
-		boolean okay=Check.checkMP2(user,npc,action2);
-		if (okay)Check.checkAction2(user,npc,action2);
-		else return;
+		if(npc.getPhase()==1) {
+		okay=Check.checkAction2(user,npc,action2);
+		}else {
+		okay=Check.checkAction3(user,npc,action2);
+		}
+		}
+		if(npc.getPhase()==1) {
 		Check.checkHP1(user,npc);
 		Check.checkPower(user,npc);
 		Check.checkHP1(user,npc);
+		}else {
+		Check.checkHP2(user,npc);
+		Check.checkPower(user,npc);
+		Check.checkHP2(user,npc);}
 		System.out.println("");
-		System.out.println("Now Your HP is "+user.HP+". MP is "+user.MP+". Power is "+user.Power+".");
+		System.out.println("Now Your HP is "+user.getHP()+". MP is "+user.getMP()+". Power is "+user.getPower()+".");
 		
 		
 	}
 	
 	
-	public static void fightingAction3(Player user,Player npc) {
-		Random rand=new Random();
-		int num4=rand.nextInt(npc.word5.length-1);
-		System.out.println(npc.word5[num4]);
-		String action2="";
-		int num1=rand.nextInt(3)+1;//(max-min+1)+min
-		for(int num2=1;num2<=num1;num2++) {
-			int num3=rand.nextInt(3);
-			String action3=npc.action2[num3];
-			action2+=action3;
-		}
-		boolean okay=Check.checkMP3(user,npc,action2);
-		if (okay)Check.checkAction3(user,npc,action2);
-		else return;
-		Check.checkHP2(user,npc);
-		Check.checkPower(user,npc);
-		Check.checkHP2(user,npc);
-		System.out.println("");
-		System.out.println("Now Your HP is "+user.HP+". MP is "+user.MP+". Power is "+user.Power+".");
-		
-		
-	}
 	
-	
-	public static void fightingAction4(Player user,Player npc){
-		
-		
-		Scanner input=new Scanner(System.in);
-		System.out.print("Enter your action: ");
-		String action1=input.nextLine();
-		boolean okay=Check.checkMP4(user,npc,action1);
-		if (okay)Check.checkAction1(user,npc,action1);
-		else return;
-		Check.checkHP2(user,npc);
-		Check.checkPower(user,npc);
-		Check.checkHP2(user,npc);
-		System.out.println("");
-		System.out.println("Now the Knight's HP is "+npc.HP+". MP is "+npc.MP+". Power is "+npc.Power+".");
-		return;
-		 
-		
-		
-	
-}
 	
 	
 }
