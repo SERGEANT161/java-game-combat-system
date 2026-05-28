@@ -1,84 +1,74 @@
-# java-game-combat-system
+# Java Game Combat System
 
-A small **turn-based combat prototype** written in Java.  
-This project focuses on **character state**, **action selection**, and **system structure** (not just simple input-output exercises).
+This is a Java console-based turn-based fighting game project.
 
-## What this project does
+The project focuses on object-oriented programming, character combat logic, combo attacks, boss phase transition, and a rule-based enemy decision system.
 
-- Console-based **turn-by-turn battle**
-- Two characters:
-  - `YOU` (player)
-  - `Knight` (NPC enemy)
-- Both characters have basic state variables:
-  - **HP** (health)
-  - **MP** (energy for combos)
-  - **Power** (builds up during combat)
-- Player can type actions to attack (including **combo input**)
-- NPC actions are **randomly generated** each turn
-- Includes simple battle text / dialogue lines based on HP stage
+## Features
 
-## How combat works (based on the current code)
+- Turn-based combat between the player and a Knight enemy
+- Object-oriented structure with Character, Player, and Knight classes
+- Private character stats with getter and setter methods
+- Text-based player input
+- Combo attack system
+- Two-phase boss battle
+- Story dialogue between phase 1 and phase 2
+- Debug logging system for testing
+- Rule-based weighted enemy move evaluator
 
-### Player actions (input-based)
+## Main Advanced Feature
 
-In your turn, the game will ask:
-```
-Enter your action:
-```
+The main advanced feature is the MoveEvaluator class.
 
-The system checks your input using keyword matching (e.g. `contains("punch")`), so you can type:
+Instead of making the Knight choose moves randomly, the system evaluates the current battle state and gives different moves different weights. The decision is based on factors such as:
 
-- Single actions: `punch`, `kick`, `slash`
-- Combo-style input in one line (multiple keywords in one string)
+- Player HP
+- Knight HP
+- Knight MP
+- Current battle phase
+- Available single attacks and combo attacks
 
-MP will be consumed based on the action / combo you typed.  
-If MP is not enough, the system prints a message and asks you to input again.
+The final move is selected through weighted probability. This makes the enemy behavior less predictable than pure random selection and works as a prototype for future AI integration.
 
-### NPC actions (random)
+## Project Structure
 
-The Knight automatically generates 1–3 actions each turn using `Random`,  
-and picks from its action list such as:
+- FightingGame.java  
+  Main entry point of the program.
 
-- `heavy slash`, `bash`, `war cry`
-- `iron spike thrust`, `trial blade`, `crushing arc`
+- Character.java  
+  Parent class for shared character stats and basic methods.
 
-### Power & special moves
+- Player.java  
+  Player character class with player skills and combo attacks.
 
-- When **YOU** reach enough `Power`, the system may ask whether to trigger a powerful skill:
-  - `Shock Pulse`
-- When the **Knight** reaches enough `Power`, it can trigger:
-  - `Rage Charge`
+- Knight.java  
+  Enemy class with Knight skills, dialogue, and phase transformation.
 
-### End conditions
+- FightingSystem.java  
+  Controls player turns and Knight turns.
 
-- If your HP drops to 0 → you lose (replay option appears)
-- If Knight HP drops to 0 → the game enters a dialogue / ending sequence
+- Check.java  
+  Handles action recognition, HP checks, MP checks, and battle result checks.
 
-## Project structure
+- MoveEvaluator.java  
+  Handles the Knight's rule-based weighted move decision.
 
-- **FightingGame.java**  
-  Main entry point. Creates both characters, assigns action lists and dialogue lines, and starts the game loop.
+- DebugLog.java  
+  Records useful debug information during testing.
 
-- **Player.java**  
-  Character "card" (encapsulated state container): HP / MP / Power / TS, action arrays, and dialogue arrays.
+- Plot.java  
+  Handles story dialogue and phase transition text.
 
-- **FightingSystem.java**  
-  Turn loop controller: handles player turn and NPC turn, including input handling and random action generation.
+## How to Run
 
-- **Check.java**  
-  Core rule system: validates actions, checks MP/HP, applies damage and state changes, and triggers dialogue or special moves.
+Run the program from:
 
-## How to run
+java FightingGame.java 
 
-### Eclipse
+All Java files should be placed under the same package:
 
-1. Put all `.java` files under the same package:
-   - `package Hey;`
-2. Run:
-   - `FightingGame.java`
+java package fightingGame21; 
 
 ## Notes
 
-- This is a prototype / V1 system built for practicing system design.
-- It is intentionally focused on state + turn logic + structure, not UI.
-- Balance values are adjustable and can be tuned as the system expands.
+This project is a console-based prototype. It does not focus on graphics or UI. The main goal is to practice Java class design, inheritance, encapsulation, combat logic, input parsing, and basic AI-style decision making.
