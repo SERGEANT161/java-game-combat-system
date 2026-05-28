@@ -1,4 +1,4 @@
-package fightingGame12;
+package fightingGame21;
 
 import java.util.Scanner;
 

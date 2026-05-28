@@ -1,4 +1,4 @@
-package fightingGame12;
+package fightingGame21;
 
 public class Knight extends Character{
 	private int phase;
@@ -98,50 +98,62 @@ public class Knight extends Character{
 	 }
 	 
 	public boolean heavyslashBash(Character target) {
+		DebugLog.write("[CHECK] MP required=20, current MP="+getMP());
 		if(getMP()>=20) {
 		 useMP(20);
 		 gainPower(5);
 		 target.takeDamage(8);
 		 System.out.println(getName()+" uses Crushing Blade Strike, swinging down with brutal momentum.");
+		 DebugLog.write("[CHECK] Result=true");
 		 return true;
 		}else {
+			DebugLog.write("[CHECK] Result=false");
 			return false;
 		}
 		 
 	 }
 
 	public boolean bashWarcry(Character target) {
+		DebugLog.write("[CHECK] MP required=20, current MP="+getMP());
 		if(getMP()>=20) {
 			 useMP(20);
 			 gainPower(10);
 			 target.takeDamage(8);
 			 System.out.println(getName()+" uses Rallying Execution, roaring and striking in a single overwhelming motion.");
+			 DebugLog.write("[CHECK] Result=true");
 			 return true;
 			}else {
+				DebugLog.write("[CHECK] Result=false");
 				return false;
 			}
 	}
 
 	public boolean heavyslashWarcry(Character target) {
+		DebugLog.write("[CHECK] MP required=20, current MP="+getMP());
 		if(getMP()>=20) {
 			 useMP(20);
 			 gainPower(10);
 			 target.takeDamage(8);
 			 System.out.println(getName()+" uses Iron Will Impact, slams forward, fueled by a furious battle shout.");
+			 DebugLog.write("[CHECK] Result=true");
 			 return true;
 			}else {
+				DebugLog.write("[CHECK] Result=false");
 				return false;
 			}
 	}
 
 	public boolean combo1(Character target) {
+		DebugLog.write("[CHECK] MP required=40, current MP="+getMP());
 		if(getMP()>=40) {
 			 useMP(40);
 			 gainPower(20);
 			 target.takeDamage(12);
 			 System.out.println(getName()+" uses Valiant Judgment. With a deafening shout, "+getName()+" unleashes a decisive finishing blow.");
+			 DebugLog.write("[CHECK] Result=true");
 			 return true;
 			}else {
+				DebugLog.write("[CHECK] Result=false");
 				return false;
 			}
 	}
@@ -159,57 +171,70 @@ public class Knight extends Character{
 	}
 	
 	public boolean ironspikethrusTrialblade(Character target) {
+		DebugLog.write("[CHECK] MP required=20, current MP="+getMP());
 		if(getMP()>=20) {
 			 useMP(20);
 			 gainPower(20);
 			 target.takeDamage(12);
 			 System.out.println(getName()+" uses Obsidian Break. A chained strike combining raw weight and precision.");
+			 DebugLog.write("[CHECK] Result=true");
 			 return true;
 			}else {
+				DebugLog.write("[CHECK] Result=false");
 				return false;
 			}
 	}
 	
 	public boolean trialbladeCrushingarc() {
+		DebugLog.write("[CHECK] MP required=20, current MP="+getMP());
 		if(getMP()>=20) {
 			 useMP(20);
 			 gainPower(20);
 			 heal(20);
 			 System.out.println(getName()+" uses Steel Requiem. His wounds recovers quickly.");
+			 DebugLog.write("[CHECK] Result=true");
 			 return true;
 			}else {
+				DebugLog.write("[CHECK] Result=false");
 				return false;
 			}
 	}
 	
 	public boolean ironspikethrustCrushingarc(Character target) {
+		DebugLog.write("[CHECK] MP required=20, current MP="+getMP());
 		if(getMP()>=20) {
 			 useMP(20);
 			 gainPower(20);
 			 target.takeDamage(12);
 			 System.out.println(getName()+" uses Cathedral Shatter. A relentless advance that leaves no room to retreat.");
+			 DebugLog.write("[CHECK] Result=true");
 			 return true;
 			}else {
+				DebugLog.write("[CHECK] Result=false");
 				return false;
 			}
 	}
 	
 	public boolean combo2(Character target) {
+		DebugLog.write("[CHECK] MP required=40, current MP="+getMP());
 		if(getMP()>=40) {
 			 useMP(40);
 			 gainPower(40);
 			 target.takeDamage(18);
 			 System.out.println(getName()+" uses Godsplitter!");
+			 DebugLog.write("[CHECK] Result=true");
 			 return true;
 			}else {
+				DebugLog.write("[CHECK] Result=false");
 				return false;
 			}
 	}
 	
 	public void transform() {
 		phase=2;
-		setHP(getHP()+50);
-		setMP(getMP()+40);
+		setHP(getHP()+20);
+		setMP(getMP()+20);
+		DebugLog.write("[STATE] Knight phase=2 HP="+getHP()+" MP="+getMP());
 	}
 	
 }

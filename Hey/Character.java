@@ -1,4 +1,4 @@
-package fightingGame12;
+package fightingGame21;
 
 public abstract class Character {
 	private String name;

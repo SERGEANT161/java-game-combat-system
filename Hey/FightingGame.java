@@ -1,10 +1,13 @@
-package fightingGame12;
+package fightingGame21;
 
 import java.util.Scanner;
 
 public class FightingGame {
 	
 	public static void main(String[] args) {
+		DebugLog.setWork(true);
+		DebugLog.cleanLog();
+		DebugLog.write("Battle starts.");
 		Player user=new Player("YOU",100, 100, 0,0);
         Knight npc=new Knight("Knight",80, 80, 0,0);
         Plot.introduction();

@@ -1,4 +1,4 @@
-package fightingGame12;
+package fightingGame21;
 import java.util.Scanner;
 import java.util.Random;
 public class FightingSystem {
@@ -11,6 +11,7 @@ public class FightingSystem {
 			while(!okay) {
 			System.out.print("Enter your action: ");
 			String action1=input.nextLine();
+			DebugLog.write("[INPUT] Player raw input: "+action1);
 			okay=Check.checkAction1(user,npc,action1);
 			}
 			if(npc.getPhase()==1) {
@@ -31,20 +32,10 @@ public class FightingSystem {
 	
 	public static void fightingActionNPC(Player user,Knight npc) {
 		Check.checkWord(npc);
-		Random rand=new Random();
-		String[] action1;
 		boolean okay=false;
 		while(!okay) {
-		if(npc.getPhase()==1) {
-		action1=npc.getAction1();
-		}else {action1=npc.getAction2();}
-		String action2="";
-		int num1=rand.nextInt(3)+1;//(max-min+1)+min
-		for(int num2=1;num2<=num1;num2++) {
-			int num3=rand.nextInt(3);
-			String action3=action1[num3];
-			action2+=action3;
-		}
+		String action2=MoveEvaluator.chooseKnightMove(user,npc);
+		DebugLog.write("[INPUT] NPC raw input: "+action2);
 		if(npc.getPhase()==1) {
 		okay=Check.checkAction2(user,npc,action2);
 		}else {
