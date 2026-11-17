@@ -8,12 +8,13 @@ public abstract class Character {
 	private int TS;
 	
 
-	public Character(String name,int HP, int MP, int Power,int TS) {
+	public Character(String name,int HP,int MP,int Power,int TS) {
 		this.name=name;
 		this.HP=HP;
 		this.MP=MP;
 		this.Power=Power;
 		this.TS=TS;
+		
 		
 		
 		

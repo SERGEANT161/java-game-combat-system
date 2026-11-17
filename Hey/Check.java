@@ -30,7 +30,7 @@ public class Check {
 		    System.out.println("“Live... where I couldn’t.”");
 		    System.out.println("And his body finally goes still.");
 		    System.out.println("");
-		    System.out.println("The end.");System.exit(0);
+		    npc.setExist(false);;FightingGame.main2(user, npc);
 		}
 	}
 	
@@ -220,6 +220,17 @@ public class Check {
 	}else {System.out.println(word5[num1]);}
 	}
 	
-	
+	public static void checkTime(GameTime time,NPC npc) {
+		int attachment=npc.getAttachment();
+		int mood;
+		int min=Math.max(0,attachment-70);
+		int max=Math.min(100,attachment+10);
+		if(time.getTime()=="Morning") {
+			time.addDay();time.addTotal();
+			Random rand=new Random();
+			mood=rand.nextInt(max-min+1)+min;
+			npc.setMood(mood);
+			}
+	}
 	
 }

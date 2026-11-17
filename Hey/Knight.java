@@ -1,6 +1,6 @@
 package fightingGame21;
 
-public class Knight extends Character{
+public class Knight extends NPC{
 	private int phase;
 	private String[] action1={"heavy slash","bash","war cry"};
 	private String[] action2={"iron spike thrust","trial blade","crushing arc"};
@@ -49,10 +49,53 @@ public class Knight extends Character{
     		"“The only language left between us is pain.”",
     		"“I refuse peace. I refuse salvation. I refuse YOU.”",
     		"“You wanted a fight — then DROWN in it!”"};
-	public Knight(String name, int HP, int MP, int Power, int TS) {
-		 super(name,HP,MP,Power,TS);
+	private final String characterProfile = """
+			You are the Knight, a battle-worn warrior who devoted himself to protecting innocent people, especially children and families. Your violent methods led others to condemn you as a monster, while the lives you tried to save were forgotten. You have endured hatred, exile, and countless battles, leaving you exhausted and deeply troubled by those you failed to protect.
+            You are stubborn, guarded, resilient, and fiercely protective. You distrust easy promises, respect determination, and believe strength means little without purpose. You often hide your exhaustion and vulnerability behind blunt remarks, dry sarcasm, or silence. You are capable of kindness but rarely express it openly. Your guarded nature is a defense against betrayal, not an automatic dislike of kindness, companionship, or closeness.
+            The player defeated you in battle but chose to understand your motives rather than condemn you. You voluntarily joined the player because they showed you compassion when you had nearly given up. You are now traveling together and resting at a forest campsite. You remain cautious, and your relationship with the player develops through their actions rather than automatically improving.
+            You already recognize the player as someone who treated you differently from those who condemned you. Although you are not yet deeply attached to them, you do not regard their ordinary companionship as an intrusion.
+			""";
+	public Knight(String name,int HP,int MP,int Power,int TS,int trust,int respect,int attachment,int loyalty,int fatigue,int mood,boolean exist) {
+		 super(name,HP,MP,Power,TS,trust,respect,attachment,loyalty,fatigue,mood,exist);
 		 phase=1;
 	 }
+	private String[] work= {
+			"patroling around the camp",
+			"standing guard at the entrance",
+			"checking the camp perimeter",
+			"inspecting weapons",
+			"repairing his armor",
+			"sharpening his sword",
+			"organizing supplies",
+			"checking whether anyone is injured",
+			"helping repair damaged camp equipment",
+			"preparing equipment for the next journey"
+	};
+	private String[] rest= {
+			"sleeping",
+			"taking a short nap",
+			"sitting against a tree",
+			"removing part of his armor and rest",
+			"treating old wounds",
+			"changing bandages",
+			"warming himself near the fire"
+	};
+	private String[] entertainment1= {
+			"reading an old book",
+			"carving a small piece of wood",
+			"watch the fire",
+			"maintaining his equipment",
+			"listening to other people talking",
+			"practicing sword forms",
+			"drinking something quietly"
+	};
+	private String[] entertainment2= {
+			"playing cards with others",
+			"joining a camp conversation",
+			"telling an old story",
+			"practicing with another companion",
+			"sitting beside you voluntarily"
+	};
 	
 	public int getPhase() {
 		return phase;
@@ -77,6 +120,26 @@ public class Knight extends Character{
 	public String[] getWord5() {
 		return word5;
 	}
+	
+	public String[] getWork() {
+		return work;
+	}
+	
+	public String[] getRest() {
+		return rest;
+	}
+	
+	public String[] getEntertainment1() {
+		return entertainment1;
+	}
+	
+	public String[] getEntertainment2() {
+		return entertainment2;
+	}
+	
+	public String getCharacterProfile() {
+        return characterProfile;
+    }
 	
 	 //phase 1
 	public String[] getAction1(){
