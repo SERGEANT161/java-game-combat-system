@@ -1,74 +1,58 @@
 # Java Game Combat System
 
-This is a Java console-based turn-based fighting game project.
+A Java console-based RPG project featuring turn-based combat, LLM-driven NPC interactions, dynamic character relationships, and an evolving game environment.
 
-The project focuses on object-oriented programming, character combat logic, combo attacks, boss phase transition, and a rule-based enemy decision system.
+The project focuses on object-oriented programming, character simulation, game logic, and the integration of local large language models into traditional game systems.
 
 ## Features
 
-- Turn-based combat between the player and a Knight enemy
-- Object-oriented structure with Character, Player, and Knight classes
-- Private character stats with getter and setter methods
-- Text-based player input
-- Combo attack system
-- Two-phase boss battle
-- Story dialogue between phase 1 and phase 2
-- Debug logging system for testing
-- Rule-based weighted enemy move evaluator
+- Turn-based combat with basic attacks, combos, and powerful skills.
+- Boss phase transitions and branching storylines.
+- Weighted enemy combat decisions based on battle conditions.
+- AI-generated NPC dialogue based on character profiles and current game states.
+- Independent AI evaluation of NPC relationship and emotional changes.
+- Dynamic NPC attributes: trust, respect, attachment, loyalty, fatigue, and mood.
+- NPC daily activities influenced by fatigue and mood.
+- Game time progression and campsite interactions.
+- Developer mode for direct access to specific game stages.
+- Debug logging for combat logic and system behavior.
 
-## Main Advanced Feature
+## AI Integration
 
-The main advanced feature is the MoveEvaluator class.
+The project uses a local LLM through LM Studio's OpenAI-compatible API.
 
-Instead of making the Knight choose moves randomly, the system evaluates the current battle state and gives different moves different weights. The decision is based on factors such as:
+NPC dialogue generation and attribute evaluation are handled through separate API requests. The model generates responses and evaluates player interactions, while Java controls game logic, attribute modifications, and state management.
 
-- Player HP
-- Knight HP
-- Knight MP
-- Current battle phase
-- Available single attacks and combo attacks
+Structured JSON outputs are processed using Gson.
 
-The final move is selected through weighted probability. This makes the enemy behavior less predictable than pure random selection and works as a prototype for future AI integration.
+## Requirements
 
-## Project Structure
+- Java: JDK 21 (Amazon Corretto)
+- Gson: 2.14.0
+- LM Studio: Latest version
+- LLM: Gemma 3 12B IT QAT (4-bit)
+- Model ID: `gemma-3-12b-it-qat`
 
-- FightingGame.java  
-  Main entry point of the program.
+## Setup
 
-- Character.java  
-  Parent class for shared character stats and basic methods.
+1. Download or clone this repository.
+2. Import the Java source files into your IDE.
+3. Download Gson 2.14.0 and add its JAR file to the project's build path.
+4. Install [LM Studio](https://lmstudio.ai/) and load the required model.
+5. Start the local API server on port `1234`.
+6. Run `FightingGame.java`.
 
-- Player.java  
-  Player character class with player skills and combo attacks.
+The default API endpoint is:
 
-- Knight.java  
-  Enemy class with Knight skills, dialogue, and phase transformation.
+`http://localhost:1234/v1/chat/completions`
 
-- FightingSystem.java  
-  Controls player turns and Knight turns.
+## Planned Features
 
-- Check.java  
-  Handles action recognition, HP checks, MP checks, and battle result checks.
+- Configurable NPC memory system.
+- Adjustable memory capacity and memory-based interactions.
+- LLM-driven combat decision mode.
+- Further expansion of NPC behavior and game environments.
 
-- MoveEvaluator.java  
-  Handles the Knight's rule-based weighted move decision.
+## Development Status
 
-- DebugLog.java  
-  Records useful debug information during testing.
-
-- Plot.java  
-  Handles story dialogue and phase transition text.
-
-## How to Run
-
-Run the program from:
-
-java FightingGame.java 
-
-All Java files should be placed under the same package:
-
-java package fightingGame21; 
-
-## Notes
-
-This project is a console-based prototype. It does not focus on graphics or UI. The main goal is to practice Java class design, inheritance, encapsulation, combat logic, input parsing, and basic AI-style decision making.
+This is an ongoing personal development project. New systems and features are gradually integrated into the existing game framework. does not focus on graphics or UI. The main goal is to practice Java class design, inheritance, encapsulation, combat logic, input parsing, and basic AI-style decision making.
